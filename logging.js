@@ -36,6 +36,14 @@ function log(msg, minlvl, flag, trace, block) {
   }
 }
 
+logging.setLevel = function(lvl) {
+  if (Object.keys(LEVELS).indexOf(level) < 0) {
+    level = 'info';
+  } else {
+    level = lvl;
+  }
+};
+
 logging.inf = function(msg, trace) {
   log(msg, 'INF'.bold.green, 'info', trace);
 };
