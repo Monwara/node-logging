@@ -18,7 +18,19 @@ var LEVELS = {
 
 var logging = exports;
 
-function log(msg, minlvl, flag, trace, block) {
+function getStamp() {
+  var date = new Date();
+
+  return [
+    '[', ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()], ' ',
+    date.getFullYear(), '-', (date.getMonth() + 1), '-', date.getDate(),
+    ' ', date.getHours(), ':', date.getMinutes(), ':', date.getSeconds(), '.',
+    date.getMilliseconds(), ']'
+  ].join('').grey;
+
+}
+
+function log(msg, flag, minlvl, trace, block) {
   if (LEVELS[level] > LEVELS[minlvl]) {
     return;
   }
@@ -26,9 +38,9 @@ function log(msg, minlvl, flag, trace, block) {
   block = block || false;
 
   if (block) {
-    util.debug(flag + ': ' + msg);
+    util.debug(getStamp() + ' ' + flag + ': ' + msg);
   } else {
-    util.log(flag + ': ' + msg);
+    console.log(getStamp() + ' ' + flag + ': ' + msg);
   }
 
   if (trace) {
@@ -56,8 +68,8 @@ logging.err = function(msg, trace) {
   log(msg, 'ERR'.bold.red, 'error', trace);
 };
 
-logging.bad = function(msg) {
-  log(msg, 'BAD'.bold.red, 'critical', true);
+logging.bad = function(msg, trace) {
+  log(msg.toString().red.bold, 'BAD'.bold.red.inverse, 'critical', trace, true);
 };
 
 logging.inspect = function(obj, trace) {
