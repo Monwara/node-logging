@@ -1,0 +1,63 @@
+# node-logging
+
+This library adds a very simple logging facility with automatic timestamping
+and tagging (e.g, ``INF:``, ``DBG:``) of log messages.
+
+Example output:
+
+![Sample node-logging output](sample.jpg)
+
+## Installing
+
+To install, use NPM:
+
+    npm install node-logging
+
+## Usage
+
+You can require it as usual:
+
+    var logging = require('logging');
+
+To change the log level:
+
+    logging.setLevel('error');
+
+There are four log levels ordered by importance (from least important to more
+important):
+
+ + _debug_: verbose debug messages
+ + _info_: informational messages
+ + _error_: error messages
+ + _critical_: (bad) error messages
+
+Setting the log level basically filters out messages of less importance. For
+example, setting the log level to 'error' will filter out 'info' and 'debug'
+messages (they simply won't be logged).
+
+To log a single info message:
+
+    logging.inf('Message');
+
+Each log level has it's own method:
+
+ + _debug_: logging.dbg()
+ + _info_: logging.inf()
+ + _error_: logging.err()
+ + _critical_: logging.bad()
+
+Each of the logging methods take a message as first argument, and optional
+``trace`` flag. Trace flag will print out the stack trace immediately following
+the log message if set to ``true``. For example:
+
+    logging.bad('Woops!', true);
+
+## Using the Connect middleware
+
+If you use Connect or Express, node-logging sports a Connect-style middleawre
+that will log details about each of your requests (you can see it in the sample
+output at the beginning of this file).
+
+Simply add this middleware to the stack (example uses Express):
+
+    app.use(logging.requestLogger);
