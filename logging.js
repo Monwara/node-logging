@@ -3,7 +3,7 @@
  *
  * @author Branko Vukelic <branko@herdhound.com>
  * @license MIT
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 var c = require('colors');
@@ -108,9 +108,39 @@ logging.requestLogger = function(req, res, next) {
   var log = 'Request for '.green.bold + 
       (req.method + ' ' + req.url.toString()).yellow.bold + '\n\n';
   var memoryUsage = process.memoryUsage();
+  var userMessages = [];
+
+  req.log = {};
+
+  req.log.startTimer = function(name) {
+    var time = (new Date()).getTime();
+
+    req.log['end' + name] = function(msg) {
+      var start = time - startTime;
+      var end = (new Date()).getTime() - startTime;
+      time = (new Date()).getTime() - time;
+      userMessages.push(('(' + start + 'ms -> ' + end + 'ms)').yellow.bold + 
+                        ' ' + msg.toString().green + ' ' +
+                        ('(took ' + time + 'ms)').yellow);
+    };
+  };
+
+  req.log.push = function(msg) {
+    var start = (new Date()).getTime() - startTime;
+    userMessages.push(('(' + start + 'ms)').yellow.bold + ' ' + 
+                     msg.toString().green);
+  };
 
   res.on('finish', function() {
     var endTime = (new Date()).getTime();
+
+    if (userMessages.length) {
+      log += 'User messages:\n'.cyan.bold;
+      userMessages.forEach(function(message) {
+        log += '*'.grey + ' ' + message + '\n';
+      });
+      log += '\n';
+    }
     
     log += 'Total request time: '.cyan.bold;
     log += ((endTime - startTime) + 'ms\n').yellow.bold;
