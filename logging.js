@@ -30,6 +30,16 @@ function getStamp() {
 
 }
 
+function humanize(i) {
+  if (i > 1073741824) {
+    return Math.round((i / 1073741824) * 100) / 100 + ' GiB';
+  } else if (i > 1048576) {
+    return Math.round((i / 1048576) * 100) / 100  + ' MiB';
+  } else {
+    return Math.round((i / 1024) * 100) / 100 + ' KiB';
+  }
+}
+
 function prettyPrintObj(o) {
   if (!o || typeof o !== 'object' || !Object.keys(o).length) {
     return '*'.grey + ' ' + 'n/a'.green + '\n';
@@ -94,7 +104,9 @@ logging.inspect = function(obj, trace) {
 
 logging.requestLogger = function(req, res, next) {
   var startTime = (new Date()).getTime();
-  var log = 'Request for '.green.bold + req.url.toString().yellow.bold + '\n\n';
+  var log = 'Request for '.green.bold + 
+      (req.method + ' ' + req.url.toString()).yellow.bold + '\n\n';
+  var memoryUsage = process.memoryUsage();
 
   res.on('finish', function() {
     var endTime = (new Date()).getTime();
@@ -104,23 +116,27 @@ logging.requestLogger = function(req, res, next) {
 
     logging.dbg(log);
   });
-  
+
   log += 'Request details:\n'.cyan.bold;
 
   log += '\n';
 
-  log += 'Request parameters:\n'.cyan.italic;
+  log += 'Path parameters:\n'.cyan.italic;
   log += prettyPrintObj(req.params) + '\n';
 
-  log += 'URL parameters:\n'.cyan.italic;
+  log += 'Query parameters:\n'.cyan.italic;
   log += prettyPrintObj(req.query) + '\n';
 
   log += 'Request body:\n'.cyan.italic;
   log += prettyPrintObj(req.body) + '\n';
   log += '==/\n\n'.cyan.bold;
 
+  Object.keys(memoryUsage).forEach(function(key) {
+    memoryUsage[key] = humanize(memoryUsage[key]);
+  });
+
   log += 'Memory usage:\n'.cyan.bold;
-  log += prettyPrintObj(process.memoryUsage());
+  log += prettyPrintObj(memoryUsage);
   log += '==/\n\n'.cyan.bold;
 
   log += 'Request headers:\n'.cyan.bold;
