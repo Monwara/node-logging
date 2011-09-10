@@ -17,7 +17,7 @@ To install, use NPM:
 
 You can require it as usual:
 
-    var logging = require('logging');
+    var logging = require('node-logging');
 
 To change the log level:
 
