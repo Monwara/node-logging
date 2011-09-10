@@ -61,3 +61,30 @@ output at the beginning of this file).
 Simply add this middleware to the stack (example uses Express):
 
     app.use(logging.requestLogger);
+
+During the request, the request object has a ``log`` property which houses a
+few methods you can use to log more details about the request.
+
+To log a single message, use the ``push`` method:
+
+    req.log.push('Some point in execution');
+
+To log an asynchronous call with timer:
+
+    req.log.startTimer('MyTimer');
+
+    setTimeout(function() {
+      req.log.endMyTimer('Finished async operation'),
+    }, 200);
+
+The ``startTimer`` method takes a single argument, timer label. This timer
+label becomes part of the method that stops it. In the above example, for the
+label ``MyTimer``, you will get a method called ``endMyTimer``. If you label
+your timer ``foo``, your end method will be ``endfoo``.
+
+All messages that you log inside your request will appear under 'User messages'
+section in your logs.
+
+Here is a sample output:
+
+![Sample output of the user messages](https://github.com/HerdHound/node-logging/raw/master/user_messages.jpg)
