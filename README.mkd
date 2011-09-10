@@ -5,7 +5,7 @@ and tagging (e.g, ``INF:``, ``DBG:``) of log messages.
 
 Example output:
 
-![Sample node-logging output](sample.jpg)
+![Sample node-logging output](https://github.com/HerdHound/node-logging/raw/master/sample.jpg)
 
 ## Installing
 
