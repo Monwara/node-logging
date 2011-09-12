@@ -109,6 +109,7 @@ logging.requestLogger = function(req, res, next) {
       (req.method + ' ' + req.url.toString()).yellow.bold + '\n\n';
   var memoryUsage = process.memoryUsage();
   var userMessages = [];
+  var connectionDetails;
 
   req.log = {};
 
@@ -168,12 +169,26 @@ logging.requestLogger = function(req, res, next) {
     memoryUsage[key] = humanize(memoryUsage[key]);
   });
 
-  log += 'Memory usage:\n'.cyan.bold;
-  log += prettyPrintObj(memoryUsage);
-  log += '==/\n\n'.cyan.bold;
-
   log += 'Request headers:\n'.cyan.bold;
   log += prettyPrintObj(req.headers);
+  log += '==/\n\n'.cyan.bold;
+
+  connectionDetails = {
+    address: req.connection.socket.remoteAddress || 'n/a',
+    port: req.connection.socket.remotePort || 'n/a',
+    HTTP: req.httpVersionMajor + '.' + req.httpVersionMinor,
+    SSL: req.connection.encrypted ? 'yes' : 'no',
+    socket: req.connection.socket.type || 'n/a',
+    'open connections': req.connection.socket.server.connections,
+  };
+
+  log += 'Connection details:\n'.cyan.bold;
+  log += prettyPrintObj(connectionDetails);
+  log += '==/\n\n'.cyan.bold;
+
+
+  log += 'Memory usage:\n'.cyan.bold;
+  log += prettyPrintObj(memoryUsage);
   log += '==/\n\n'.cyan.bold;
 
   next();
