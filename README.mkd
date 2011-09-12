@@ -88,3 +88,22 @@ section in your logs.
 Here is a sample output:
 
 ![Sample output of the user messages](https://github.com/HerdHound/node-logging/raw/master/user_messages.jpg)
+
+## Excluding parameters from request logger
+
+Sometimes you don't want certain parameters logged. A good example is users'
+clear-text passwords. In such cases, you can set excludes to skip these 
+parameters.
+
+    logging.setExcludes(['password', 'pw']);
+
+By default, parameter called 'password' will be excluded. However, if you don't
+want to exclude the 'password' parameter, you can just set the excludes to an
+empty array:
+
+    logging.setExcludes([]);
+
+The above disables any excludes.
+
+Excluded parameters will be logged as having value '(excluded)'. This is done
+so that you can still see that the parameter was passed.
