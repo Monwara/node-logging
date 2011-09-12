@@ -177,6 +177,12 @@ logging.requestLogger = function(req, res, next) {
     log += prettyPrintObj(req.headers);
     log += '==/\n\n'.cyan.bold;
 
+    // WARN: The API used to read out response headers is private. This
+    // functionality may stop working in futre Node.js releases.
+    log += 'Response headers:\n'.cyan.bold;
+    log += prettyPrintObj(res._headers);
+    log += '==/\n\n'.cyan.bold;
+
     connectionDetails = {
       address: socket && socket.remoteAddress || 'n/a',
       port: socket && socket.remotePort || 'n/a',
