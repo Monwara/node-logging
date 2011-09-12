@@ -129,6 +129,7 @@ logging.requestLogger = function(req, res, next) {
   var memoryUsage = process.memoryUsage();
   var userMessages = [];
   var connectionDetails;
+  var socket = req.connection.socket;
 
   req.log = {};
 
@@ -177,12 +178,13 @@ logging.requestLogger = function(req, res, next) {
     log += '==/\n\n'.cyan.bold;
 
     connectionDetails = {
-      address: req.connection.socket.remoteAddress || 'n/a',
-      port: req.connection.socket.remotePort || 'n/a',
+      address: socket && socket.remoteAddress || 'n/a',
+      port: socket && socket.remotePort || 'n/a',
       HTTP: req.httpVersionMajor + '.' + req.httpVersionMinor,
       SSL: req.connection.encrypted ? 'yes' : 'no',
-      socket: req.connection.socket.type || 'n/a',
-      'open connections': req.connection.socket.server.connections,
+      socket: socket && socket.type || 'n/a',
+      'open connections': socket && socket.server && 
+        socket.server.connections || 'n/a'
     };
 
     log += 'Connection details:\n'.cyan.bold;
