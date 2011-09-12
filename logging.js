@@ -113,6 +113,15 @@ logging.inspect = function(obj, trace) {
   logging.debug(utils.inspect(obj, true, null), trace);
 };
 
+logging.startTimer = function() {
+  var startTime = (new Date()).getTime();
+
+  return function(msg, trace) {
+    msg = msg + ' ' + ('(took ' + ((new Date()).getTime() - startTime) + 'ms)').yellow;
+    logging.dbg(msg, trace);
+  };
+};
+
 logging.requestLogger = function(req, res, next) {
   var startTime = (new Date()).getTime();
   var log = 'Request for '.green.bold + 
