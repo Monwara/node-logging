@@ -135,6 +135,46 @@ logging.requestLogger = function(req, res, next) {
   res.on('finish', function() {
     var endTime = (new Date()).getTime();
 
+    log += 'Request details:\n'.cyan.bold;
+
+    log += '\n';
+
+    log += 'Path parameters:\n'.cyan.italic;
+    log += prettyPrintObj(req.params) + '\n';
+
+    log += 'Query parameters:\n'.cyan.italic;
+    log += prettyPrintObj(req.query) + '\n';
+
+    log += 'Request body:\n'.cyan.italic;
+    log += prettyPrintObj(req.body) + '\n';
+    log += '==/\n\n'.cyan.bold;
+
+    Object.keys(memoryUsage).forEach(function(key) {
+      memoryUsage[key] = humanize(memoryUsage[key]);
+    });
+
+    log += 'Request headers:\n'.cyan.bold;
+    log += prettyPrintObj(req.headers);
+    log += '==/\n\n'.cyan.bold;
+
+    connectionDetails = {
+      address: req.connection.socket.remoteAddress || 'n/a',
+      port: req.connection.socket.remotePort || 'n/a',
+      HTTP: req.httpVersionMajor + '.' + req.httpVersionMinor,
+      SSL: req.connection.encrypted ? 'yes' : 'no',
+      socket: req.connection.socket.type || 'n/a',
+      'open connections': req.connection.socket.server.connections,
+    };
+
+    log += 'Connection details:\n'.cyan.bold;
+    log += prettyPrintObj(connectionDetails);
+    log += '==/\n\n'.cyan.bold;
+
+
+    log += 'Memory usage:\n'.cyan.bold;
+    log += prettyPrintObj(memoryUsage);
+    log += '==/\n\n'.cyan.bold;
+
     if (userMessages.length) {
       log += 'User messages:\n'.cyan.bold;
       userMessages.forEach(function(message) {
@@ -150,46 +190,6 @@ logging.requestLogger = function(req, res, next) {
 
     logging.dbg(log);
   });
-
-  log += 'Request details:\n'.cyan.bold;
-
-  log += '\n';
-
-  log += 'Path parameters:\n'.cyan.italic;
-  log += prettyPrintObj(req.params) + '\n';
-
-  log += 'Query parameters:\n'.cyan.italic;
-  log += prettyPrintObj(req.query) + '\n';
-
-  log += 'Request body:\n'.cyan.italic;
-  log += prettyPrintObj(req.body) + '\n';
-  log += '==/\n\n'.cyan.bold;
-
-  Object.keys(memoryUsage).forEach(function(key) {
-    memoryUsage[key] = humanize(memoryUsage[key]);
-  });
-
-  log += 'Request headers:\n'.cyan.bold;
-  log += prettyPrintObj(req.headers);
-  log += '==/\n\n'.cyan.bold;
-
-  connectionDetails = {
-    address: req.connection.socket.remoteAddress || 'n/a',
-    port: req.connection.socket.remotePort || 'n/a',
-    HTTP: req.httpVersionMajor + '.' + req.httpVersionMinor,
-    SSL: req.connection.encrypted ? 'yes' : 'no',
-    socket: req.connection.socket.type || 'n/a',
-    'open connections': req.connection.socket.server.connections,
-  };
-
-  log += 'Connection details:\n'.cyan.bold;
-  log += prettyPrintObj(connectionDetails);
-  log += '==/\n\n'.cyan.bold;
-
-
-  log += 'Memory usage:\n'.cyan.bold;
-  log += prettyPrintObj(memoryUsage);
-  log += '==/\n\n'.cyan.bold;
 
   next();
 };
