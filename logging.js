@@ -17,6 +17,8 @@ var LEVELS = {
   critical: 4
 };
 
+var EXCLUDES = ['password'];
+
 var logging = exports;
 
 function getStamp() {
@@ -41,7 +43,9 @@ function humanize(i) {
   }
 }
 
-function prettyPrintObj(o) {
+function prettyPrintObj(o, excludes) {
+  excludes = typeof excludes === 'undefined' ? EXCLUDES : excludes;
+
   if (!o || typeof o !== 'object' || !Object.keys(o).length) {
     return '*'.grey + ' ' + 'n/a'.green + '\n';
   }
@@ -49,7 +53,9 @@ function prettyPrintObj(o) {
   var rows = [];
 
   Object.keys(o).forEach(function(key) {
-    rows.push('*'.grey + ' ' + key.green + ': ' + o[key].toString());
+    var value = (excludes.length && excludes.indexOf(key) < 0) && 
+      o[key].toString() || '(excluded)'.grey;
+    rows.push('*'.grey + ' ' + key.green + ': ' + value);
   });
 
   return rows.join('\n') + '\n';
@@ -81,6 +87,10 @@ logging.setLevel = function(lvl) {
   } else {
     level = lvl;
   }
+};
+
+logging.setExcludes = function(excludes) {
+  EXCLUDES = excludes;
 };
 
 logging.inf = function(msg, trace) {
