@@ -145,6 +145,8 @@ logging.requestLogger = function(req, res, next) {
     log += 'Total request time: '.cyan.bold;
     log += ((endTime - startTime) + 'ms\n').yellow.bold;
 
+    log = res.statusCode.toString().red + ' ' + log;
+
     logging.dbg(log);
   });
 
