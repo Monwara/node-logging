@@ -53,8 +53,8 @@ function prettyPrintObj(o, excludes) {
   var rows = [];
 
   Object.keys(o).forEach(function(key) {
-    var value = (excludes.length && excludes.indexOf(key) < 0) && 
-      o[key].toString() || '(excluded)'.grey;
+    var value = (excludes.length && excludes.indexOf(key) < 0) ? 
+      o[key].toString() : '(excluded)'.grey;
     rows.push('*'.grey + ' ' + key.green + ': ' + value);
   });
 
