@@ -55,10 +55,16 @@ function prettyPrintObj(o, excludes) {
   Object.keys(o).forEach(function(key) {
     var value;
 
-    if (excludes.length && excludes.indexOf(key) < 0) { 
-      value = (typeof o[key] === 'null' && '** null **') || 
-        (typeof o[key] === 'undefined' && '** undefined **') ||
-        o[key].toString();
+    if (excludes.length && excludes.indexOf(key) < 0) {
+
+      if (o[key] === 'null') {
+        value = 'null'.grey;
+      } else if (typeof o[key] === 'undefined') {
+        value = 'undefined'.grey;
+      } else {
+        value = o[key].toString();
+      }
+
     } else {
       value = '(excluded)'.grey;
     }
