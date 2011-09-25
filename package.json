@@ -1,7 +1,7 @@
 {
   "name": "node-logging",
   "description": "Simple colorized logging for Node.js with request logger Connect middleware",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/HerdHound/profilejs",
   "keywords": ["logging", "connect", "middleware"],
   "author": "Herd Hound <branko@herdhound.com>",
