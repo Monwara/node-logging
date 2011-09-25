@@ -3,7 +3,7 @@
  *
  * @author Branko Vukelic <branko@herdhound.com>
  * @license MIT
- * @version 0.1.1
+ * @version 0.1.2
  */
 
 var c = require('colors');
