@@ -57,7 +57,7 @@ function prettyPrintObj(o, excludes) {
 
     if (excludes.length && excludes.indexOf(key) < 0) {
 
-      if (o[key] === 'null') {
+      if (o[key] === null) {
         value = 'null'.grey;
       } else if (typeof o[key] === 'undefined') {
         value = 'undefined'.grey;
