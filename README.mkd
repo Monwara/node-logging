@@ -89,6 +89,25 @@ Here is a sample output:
 
 ![Sample output of the user messages](https://github.com/HerdHound/node-logging/raw/master/user_messages.jpg)
 
+You can terminate logging without finishing the response by calling the
+``req.log.terminate`` method. This method takes a single argument ``msg`` which
+will be appended to the log.
+
+    app.get('/login', function(req, res, next) {
+
+      User.find({username: req.param('username')}, function(err, user) {
+        if (err) {
+           req.log.terminate('Database error: ' + err);
+           next(err);
+           return;
+        }
+
+        // log the user in, etc, etc...
+
+      });
+
+    });
+
 ## Excluding parameters from request logger
 
 Sometimes you don't want certain parameters logged. A good example is users'
