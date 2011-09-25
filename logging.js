@@ -231,7 +231,7 @@ logging.requestLogger = function(req, res, next) {
     log = res.statusCode.toString().red + ' ' + log;
 
     if (log) {
-      lagging.dbg(log);
+      logging.dbg(log);
     }
   });
 
