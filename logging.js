@@ -152,6 +152,13 @@ logging.requestLogger = function(req, res, next) {
                      msg.toString().green);
   };
 
+  req.log.terminate = function(msg) {
+    log += '\nLOGGING TERMINATED\n'.red.bold;
+    log += msg.yellow.bold;
+    logging.dbg(log);
+    log = null;
+  };
+
   res.on('finish', function() {
     var endTime = (new Date()).getTime();
 
@@ -215,7 +222,9 @@ logging.requestLogger = function(req, res, next) {
 
     log = res.statusCode.toString().red + ' ' + log;
 
-    logging.dbg(log);
+    if (log) {
+      lagging.dbg(log);
+    }
   });
 
   next();
