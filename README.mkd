@@ -91,7 +91,9 @@ Here is a sample output:
 
 You can terminate logging without finishing the response by calling the
 ``req.log.terminate`` method. This method takes a single argument ``msg`` which
-will be appended to the log.
+will be appended to the log. Normally, logging will only output the log if the 
+response actually finishes. ``req.log.terminate`` method can be used to force
+log output when you know response will never finish:
 
     app.get('/login', function(req, res, next) {
 
