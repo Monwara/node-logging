@@ -21,7 +21,7 @@
     "url": "https://HerdHound@github.com/HerdHound/node-logging.git"
   },
   "engines": {
-    "node": ">= 0.4.1 < 0.5.0"
+    "node": ">= 0.4.1"
   },
   "dependencies": {
     "colors": ">= 0.5.0"
