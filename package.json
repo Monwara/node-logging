@@ -14,7 +14,7 @@
   "main": "index.js",
   "bugs": {
     "mail": "branko@herdhound.com",
-    "web": "https://github.com/HerdHound/node-logging/issues"
+    "url": "https://github.com/HerdHound/node-logging/issues"
   },
   "repository": {
     "type": "git",
