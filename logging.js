@@ -18,6 +18,8 @@ var LEVELS = {
 };
 
 var EXCLUDES = ['password'];
+var WHITELIST = [];
+var BLACKLIST = [];
 
 var logging = exports;
 
@@ -75,10 +77,40 @@ function prettyPrintObj(o, excludes) {
   return rows.join('\n') + '\n';
 }
 
+function cleanUp(msg) {
+  if (!WHITELIST.length && !BLACKLIST.length) {
+    // Pass-thru if WHITELIST and BLACKLIST are empty
+    return msg;
+  }
+
+  // Sanitize using blacklist if no whitelist is provided
+  if (!WHITELIST.length && BLACKLIST.length) {
+    BLACKLIST.forEach(function(r) {
+      msg = msg.replace(r, '');
+    });
+    return msg;
+  }
+
+  // TODO: Look for a more efficient way to do this
+  WHITELIST.forEach(function(r) {
+    badChars = msg.split(r);
+    badChars = badChars.filter(function(c) {
+      return c.length;
+    });
+    badChars.forEach(function(c) {
+      msg = msg.replace(new RegExp(c, 'gm'), '');
+    });
+  });
+
+  return msg;
+}
+
 function log(msg, flag, minlvl, trace, block) {
   if (LEVELS[level] > LEVELS[minlvl]) {
     return;
   }
+
+  msg = cleanUp(msg);
 
   block = block || false;
 
@@ -101,6 +133,39 @@ logging.setLevel = function(lvl) {
   } else {
     level = lvl;
   }
+};
+
+/**
+ * Convert an array of regexps or strings (or both) to regexps
+ *
+ * @param {Array} arr Array of items to convert
+ * @return {Array} Array of regexps
+ */
+function convertToRegExp(arr) {
+  var regexes = [];
+  arr.forEach(function(r) {
+    if (typeof r === 'string') {
+      // Check if it begins with a slash
+      if (r[0] === '/' && a.slice(-1) === '/') {
+        regexes.push(new RegExp(r.slice(0, -1), 'gm'));
+      } else {
+        regexes.push(new RegExp(r, 'gm'));
+      }
+    } else if (r instanceof RegExp) {
+      regexes.push(new RegExp(r.source, 'gm'));
+    }
+  });
+  return regexes;
+}
+
+logging.setBlacklist = function(blacklist) {
+  if (!Array.isArray(blacklist)) { return; }
+  BLACKLIST = convertToRegExp(blacklist);
+};
+
+logging.setWhitelist = function(whitelist) {
+  if (!Array.isArray(whitelist)) { return; }
+  WHITELIST = convertToRegExp(whitelist);
 };
 
 logging.setExcludes = function(excludes) {
