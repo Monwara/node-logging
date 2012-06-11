@@ -97,13 +97,16 @@ function cleanUp(msg) {
     return msg;
   }
 
-  // TODO: Look for a more efficient way to do this
+  // Sanitize using whitelist
   WHITELIST.forEach(function(r) {
+    var badUniqueChars = [];
     var badChars = msg.split(r);
-    badChars = badChars.filter(function(c) {
-      return c.length;
-    });
     badChars.forEach(function(c) {
+      if (c.length && badUniqueChars.indexOf(c) === -1) {
+        badUniqueChars.push(c);
+      }
+    });
+    badUniqueChars.forEach(function(c) {
       msg = msg.replace(new RegExp(cleanRxp(c), 'gm'), '');
     });
   });

@@ -23,5 +23,5 @@ logging.inf('No new line in this text.\nThis would normally be the second line.'
 logging.inf('TESTING WHITELISTING');
 logging.setWhitelist(['[a-zA-Z0-9 ]']);
 logging.inf('You should now see words here -->foo<-- but no arrows');
-logging.inf('There should be no šđforeign letters.');
+logging.inf('There shoulšđd be no šđforeign letters.');
 
