@@ -128,3 +128,35 @@ The above disables any excludes.
 
 Excluded parameters will be logged as having value '(excluded)'. This is done
 so that you can still see that the parameter was passed.
+
+## Sanitizing the log messages
+
+Versions after 0.1.3 have support for sanitizing the logged messages using a
+global blacklist or whitelist. These lists a arrays of regexps or strings that
+represent a regexp pattern, that will be matched against an incoming message.
+The parts that match any of the regexps will be excluded (blacklist) or
+included (whitelist) in the final message.
+
+By default, no blacklist or whitelist patterns are defined, so a message will
+appear in the log as you log them. To specify a blacklist pattern array, do it
+like this:
+
+    logging.setBlacklist([/\n/]);
+
+The above must be done before any logging happens in your app. What the above
+does is it strips away any newlines from the messages.
+
+To allow only alphanumeric characters and spaces in your log messages, you can
+use a whitelist:
+
+    logging.setWhitelist(['[a-zA-Z0-9 ]']);
+
+This strips out all characters that are _not_ matched by the regular
+expression, and therefore allows in only alphanumerics and spaces. 
+
+Note that if both blacklist and whitelist is specified, blacklist is completely
+ignored. Also be aware that whitelists are less efficient than blacklists, so
+if performance is critical, try to use blacklists.
+
+To reset the whitelist and blacklist to default (no filtering), simply pass an
+empty array. Note that passing any value other than array will not work.
