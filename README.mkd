@@ -5,7 +5,7 @@ and tagging (e.g, ``INF:``, ``DBG:``) of log messages.
 
 Example output:
 
-![Sample node-logging output](https://github.com/HerdHound/node-logging/raw/master/sample.jpg)
+![Sample node-logging output](https://github.com/Monwara/node-logging/raw/master/sample.jpg)
 
 ## Installing
 
@@ -87,7 +87,7 @@ section in your logs.
 
 Here is a sample output:
 
-![Sample output of the user messages](https://github.com/HerdHound/node-logging/raw/master/user_messages.jpg)
+![Sample output of the user messages](https://github.com/Monwara/node-logging/raw/master/user_messages.jpg)
 
 You can terminate logging without finishing the response by calling the
 ``req.log.terminate`` method. This method takes a single argument ``msg`` which

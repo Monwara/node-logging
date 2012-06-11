@@ -1,8 +1,8 @@
 {
   "name": "node-logging",
   "description": "Simple colorized logging for Node.js with request logger Connect middleware",
-  "version": "0.1.4",
-  "homepage": "https://github.com/HerdHound/profilejs",
+  "version": "0.1.5",
+  "homepage": "https://github.com/Monwara/profilejs",
   "keywords": ["logging", "connect", "middleware"],
   "author": "Monwara LLC <branko@monwara.com>",
   "maintainers": [
@@ -14,11 +14,11 @@
   "main": "index.js",
   "bugs": {
     "mail": "branko@monwara.com",
-    "url": "https://github.com/HerdHound/node-logging/issues"
+    "url": "https://github.com/Monwara/node-logging/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://HerdHound@github.com/HerdHound/node-logging.git"
+    "url": "https://Monwara@github.com/Monwara/node-logging.git"
   },
   "engines": {
     "node": ">= 0.4.1"
@@ -28,7 +28,7 @@
   },
   "licenses": [{
     "type": "MIT",
-    "url": "https://github.com/HerdHound/node-logging/raw/master/LICENSE"
+    "url": "https://github.com/Monwara/node-logging/raw/master/LICENSE"
   }]
 }
 
