@@ -1,9 +1,9 @@
 /**
  * # Logging library for Node.js
  *
- * @author Branko Vukelic <branko@herdhound.com>
+ * @author Monwara LLC / Branko Vukelic <branko@monwara.com>
  * @license MIT
- * @version 0.1.3
+ * @version 0.1.4
  */
 
 var c = require('colors');

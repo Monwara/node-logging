@@ -1,19 +1,19 @@
 {
   "name": "node-logging",
   "description": "Simple colorized logging for Node.js with request logger Connect middleware",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://github.com/HerdHound/profilejs",
   "keywords": ["logging", "connect", "middleware"],
-  "author": "Herd Hound <branko@herdhound.com>",
+  "author": "Monwara LLC <branko@monwara.com>",
   "maintainers": [
     {
       "name": "Branko Vukelic",
-      "email": "branko@herdhound.com"
+      "email": "branko@monwara.com"
     }
   ],
   "main": "index.js",
   "bugs": {
-    "mail": "branko@herdhound.com",
+    "mail": "branko@monwara.com",
     "url": "https://github.com/HerdHound/node-logging/issues"
   },
   "repository": {
