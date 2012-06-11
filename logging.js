@@ -77,6 +77,12 @@ function prettyPrintObj(o, excludes) {
   return rows.join('\n') + '\n';
 }
 
+// Escape special characters used in regexp
+function cleanRxp(s) {
+  return s.replace(/\\/g, '\\\\').
+    replace(/\./g, '\\.');
+}
+
 function cleanUp(msg) {
   if (!WHITELIST.length && !BLACKLIST.length) {
     // Pass-thru if WHITELIST and BLACKLIST are empty
@@ -93,12 +99,12 @@ function cleanUp(msg) {
 
   // TODO: Look for a more efficient way to do this
   WHITELIST.forEach(function(r) {
-    badChars = msg.split(r);
+    var badChars = msg.split(r);
     badChars = badChars.filter(function(c) {
       return c.length;
     });
     badChars.forEach(function(c) {
-      msg = msg.replace(new RegExp(c, 'gm'), '');
+      msg = msg.replace(new RegExp(cleanRxp(c), 'gm'), '');
     });
   });
 
