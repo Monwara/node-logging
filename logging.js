@@ -233,7 +233,7 @@ logging.requestLogger = function(req, res, next) {
 
   req.log.terminate = function(msg) {
     log += '\nLOGGING TERMINATED\n'.red.bold;
-    log += msg.yellow.bold;
+    log += msg ? cleanUp(msg).yellow.bold : '';
     logging.dbg(log);
     log = null;
   };
@@ -289,6 +289,10 @@ logging.requestLogger = function(req, res, next) {
     log += '==/\n\n'.cyan.bold;
 
     if (userMessages.length) {
+      // Perform cleanup of all accumulated messages
+      userMessages = userMessages.map(cleanUp);
+
+      // Write the user messages
       log += 'User messages:\n'.cyan.bold;
       userMessages.forEach(function(message) {
         log += '*'.grey + ' ' + message + '\n';
