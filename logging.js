@@ -211,6 +211,7 @@ logging.startTimer = function() {
 };
 
 logging.requestLogger = function(req, res, next) {
+  var terminated = false;
   var startTime = (new Date()).getTime();
   var log = 'Request for '.green.bold + 
       (req.method + ' ' + req.url.toString()).yellow.bold + '\n\n';
@@ -240,14 +241,11 @@ logging.requestLogger = function(req, res, next) {
                      msg.toString().green);
   };
 
-  req.log.terminate = function(msg) {
-    log += '\nLOGGING TERMINATED\n'.red.bold;
-    log += msg.yellow.bold;
-    logging.dbg(log);
-    log = null;
-  };
+  function completeLog() {
+    if (terminated) {
+      return;
+    }
 
-  res.on('finish', function() {
     var endTime = (new Date()).getTime();
 
     log += 'Request details:\n'.cyan.bold;
@@ -313,7 +311,18 @@ logging.requestLogger = function(req, res, next) {
     if (log) {
       logging.dbg(log);
     }
-  });
+  }
+
+  res.on('finish', completeLog);
+
+  req.log.terminate = function(msg) {
+    log = '[TERM] '.red.bold + log;
+    userMessages.push(
+      'TERMINATED:'.red.bold +
+      msg.yellow.bold + '\n');
+    completeLog();
+    terminated = true;
+  };
 
   next();
 };
