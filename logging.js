@@ -3,7 +3,7 @@
  *
  * @author Monwara LLC / Branko Vukelic <branko@monwara.com>
  * @license MIT
- * @version 0.1.5
+ * @version 0.1.6
  */
 
 var c = require('colors');
