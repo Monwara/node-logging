@@ -1,0 +1,139 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/home/branko/local/bin/npm', 'publish' ]
+info using npm@1.1.4
+info using node@v0.6.12
+verbose config file /home/branko/.npmrc
+verbose config file /home/branko/local/etc/npmrc
+verbose config file /home/branko/local/lib/node_modules/npm/npmrc
+verbose publish [ '.' ]
+verbose caching /home/branko/code/work/node-logging/package.json
+verbose loadDefaults node-logging@0.1.5
+info prepublish node-logging@0.1.5
+verbose cache add [ '.', null ]
+silly cache add: name, spec, args [ undefined, '.', [ '.', null ] ]
+verbose parsed url { pathname: '.', path: '.', href: '.' }
+verbose caching package.json
+verbose loadDefaults node-logging@0.1.5
+verbose pack /home/branko/code/work/node-logging
+verbose pack /home/branko/code/work/node-logging /tmp/npm-1348570869479/1348570869479-0.05077571072615683/tmp.tgz
+silly makeList /home/branko/code/work/node-logging
+verbose doing fancy crap /home/branko/code/work/node-logging/node_modules
+silly dir, dirLen [ '/home/branko/code/work/node-logging', 36 ]
+verbose tarball /tmp/npm-1348570869479/1348570869479-0.05077571072615683/tmp.tgz
+verbose parent /home/branko/code/work/node-logging
+verbose mkdir (expected) error ENOENT, no such file or directory '/tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm'
+verbose mkdir done: /tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm 755
+verbose unpack_ uid, gid [ undefined, undefined ]
+verbose unpackTarget /tmp/npm-1348570869479/1348570869479-0.05077571072615683/package
+silly gunzTarPerm modes [ '755', '644' ]
+silly afterUntar ok
+silly asyncMap in gTP /tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm/node-logging
+silly asyncMap in gTP /tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm/node-logging/sample.jpg
+silly asyncMap in gTP /tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm/node-logging/README.mkd
+silly asyncMap in gTP /tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm/node-logging/user_messages.jpg
+silly asyncMap in gTP /tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm/node-logging/logging.js
+silly asyncMap in gTP /tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm/node-logging/example.js
+silly asyncMap in gTP /tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm/node-logging/package.json
+silly asyncMap in gTP /tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm/node-logging/LICENSE
+silly asyncMap in gTP /tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm/node-logging/.npmignore
+silly asyncMap in gTP /tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm/node-logging/index.js
+verbose gunzed /tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm/node-logging
+verbose rm'ed /tmp/npm-1348570869479/1348570869479-0.05077571072615683/package
+verbose renamed [ '/tmp/npm-1348570869479/1348570869479-0.05077571072615683/___package.npm/node-logging',
+verbose renamed   '/tmp/npm-1348570869479/1348570869479-0.05077571072615683/package' ]
+verbose caching /tmp/npm-1348570869479/1348570869479-0.05077571072615683/package/package.json
+verbose loadDefaults node-logging@0.1.5
+verbose tarball contents [ 'package', 'tmp.tgz' ]
+verbose from cache /tmp/npm-1348570869479/1348570869479-0.05077571072615683/package/package.json
+verbose pack /tmp/npm-1348570869479/1348570869479-0.05077571072615683/package
+verbose pack /tmp/npm-1348570869479/1348570869479-0.05077571072615683/package /home/branko/.npm/node-logging/0.1.5/package.tgz
+silly makeList /tmp/npm-1348570869479/1348570869479-0.05077571072615683/package
+silly dir, dirLen [ '/tmp/npm-1348570869479/1348570869479-0.05077571072615683/package',
+silly dir, dirLen   65 ]
+verbose tarball /home/branko/.npm/node-logging/0.1.5/package.tgz
+verbose parent /tmp/npm-1348570869479/1348570869479-0.05077571072615683/package
+verbose mkdir (expected) error ENOENT, no such file or directory '/home/branko/.npm/node-logging/0.1.5/___package.npm'
+verbose mkdir done: /home/branko/.npm/node-logging/0.1.5/___package.npm 755
+verbose unpack_ uid, gid [ undefined, undefined ]
+verbose unpackTarget /home/branko/.npm/node-logging/0.1.5/package
+silly gunzTarPerm modes [ '755', '644' ]
+silly afterUntar ok
+silly asyncMap in gTP /home/branko/.npm/node-logging/0.1.5/___package.npm/package
+silly asyncMap in gTP /home/branko/.npm/node-logging/0.1.5/___package.npm/package/index.js
+silly asyncMap in gTP /home/branko/.npm/node-logging/0.1.5/___package.npm/package/LICENSE
+silly asyncMap in gTP /home/branko/.npm/node-logging/0.1.5/___package.npm/package/package.json
+silly asyncMap in gTP /home/branko/.npm/node-logging/0.1.5/___package.npm/package/example.js
+silly asyncMap in gTP /home/branko/.npm/node-logging/0.1.5/___package.npm/package/logging.js
+silly asyncMap in gTP /home/branko/.npm/node-logging/0.1.5/___package.npm/package/user_messages.jpg
+silly asyncMap in gTP /home/branko/.npm/node-logging/0.1.5/___package.npm/package/README.mkd
+silly asyncMap in gTP /home/branko/.npm/node-logging/0.1.5/___package.npm/package/.npmignore
+silly asyncMap in gTP /home/branko/.npm/node-logging/0.1.5/___package.npm/package/sample.jpg
+verbose gunzed /home/branko/.npm/node-logging/0.1.5/___package.npm/package
+verbose rm'ed /home/branko/.npm/node-logging/0.1.5/package
+verbose renamed [ '/home/branko/.npm/node-logging/0.1.5/___package.npm/package',
+verbose renamed   '/home/branko/.npm/node-logging/0.1.5/package' ]
+verbose caching /home/branko/.npm/node-logging/0.1.5/package/package.json
+verbose loadDefaults node-logging@0.1.5
+silly updated sha bytes 40960
+silly updated sha bytes 24815
+info shasum 7deb3217abd6454210308fd2adba3ecbec2bcfa2
+info shasum /home/branko/.npm/node-logging/0.1.5/package.tgz
+verbose from cache /home/branko/.npm/node-logging/0.1.5/package/package.json
+verbose chmod /home/branko/.npm/node-logging/0.1.5/package.tgz 644
+verbose chown [ '/home/branko/.npm/node-logging/0.1.5/package.tgz', 1000, 100 ]
+silly publish { name: 'node-logging',
+silly publish   description: 'Simple colorized logging for Node.js with request logger Connect middleware',
+silly publish   version: '0.1.5',
+silly publish   homepage: 'https://github.com/Monwara/profilejs',
+silly publish   keywords: [ 'logging', 'connect', 'middleware' ],
+silly publish   author: { name: 'Monwara LLC', email: 'branko@monwara.com' },
+silly publish   maintainers: [ { name: 'Branko Vukelic', email: 'branko@monwara.com' } ],
+silly publish   main: 'index.js',
+silly publish   bugs: 
+silly publish    { email: 'branko@monwara.com',
+silly publish      url: 'https://github.com/Monwara/node-logging/issues' },
+silly publish   repository: 
+silly publish    { type: 'git',
+silly publish      url: 'git://github.com/Monwara/node-logging.git' },
+silly publish   engines: { node: '>= 0.4.1' },
+silly publish   dependencies: { colors: '>= 0.5.0' },
+silly publish   licenses: 
+silly publish    [ { type: 'MIT',
+silly publish        url: 'https://github.com/Monwara/node-logging/raw/master/LICENSE' } ],
+silly publish   _npmUser: { name: 'foxbunny', email: 'branko@brankovukelic.com' },
+silly publish   _id: 'node-logging@0.1.5',
+silly publish   devDependencies: {},
+silly publish   optionalDependencies: {},
+silly publish   _engineSupported: true,
+silly publish   _npmVersion: '1.1.4',
+silly publish   _nodeVersion: 'v0.6.12',
+silly publish   _defaultsLoaded: true,
+silly publish   dist: 
+silly publish    { shasum: '7deb3217abd6454210308fd2adba3ecbec2bcfa2',
+silly publish      tarball: 'http://registry.npmjs.org/node-logging/-/node-logging-0.1.5.tgz' } }
+verbose raw, before any munging node-logging
+verbose url resolving [ 'https://registry.npmjs.org/', './node-logging' ]
+verbose url resolved https://registry.npmjs.org/node-logging
+http PUT https://registry.npmjs.org/node-logging
+http 409 https://registry.npmjs.org/node-logging
+verbose raw, before any munging node-logging
+verbose url resolving [ 'https://registry.npmjs.org/', './node-logging' ]
+verbose url resolved https://registry.npmjs.org/node-logging
+http GET https://registry.npmjs.org/node-logging
+http 200 https://registry.npmjs.org/node-logging
+info Already published node-logging@0.1.5
+verbose uploading bin dists []
+ERR! publish fail Cannot publish over existing version.
+ERR! publish fail Bump the 'version' field, set the --force flag, or
+ERR! publish fail     npm unpublish 'node-logging@0.1.5'
+ERR! publish fail and try again
+ERR! 
+ERR! System Linux 3.4.7-1-ARCH
+ERR! command "node" "/home/branko/local/bin/npm" "publish"
+ERR! cwd /home/branko/code/work/node-logging
+ERR! node -v v0.6.12
+ERR! npm -v 1.1.4
+ERR! code EPUBLISHCONFLICT
+ERR! message publish fail
+ERR! errno {}
+verbose exit [ 1, true ]

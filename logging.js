@@ -241,6 +241,13 @@ logging.requestLogger = function(req, res, next) {
                      msg.toString().green);
   };
 
+  req.log.inspect = function(msg, obj) {
+    var start = (new Date()).getTime() - startTime;
+    userMessages.push(('(' + start + 'ms)').yellow.bold + ' ' +
+                      msg.toString().green + ':\n' + 
+                      util.inspect(obj, true, null));
+  };
+
   function completeLog() {
     if (terminated) {
       return;

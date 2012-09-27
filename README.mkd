@@ -69,6 +69,10 @@ To log a single message, use the ``push`` method:
 
     req.log.push('Some point in execution');
 
+You can also log an object (inspected) with a message:
+
+    req.log.inspect('Let\'s see what\'s in this object', someObject);
+
 To log an asynchronous call with timer:
 
     req.log.startTimer('MyTimer');
