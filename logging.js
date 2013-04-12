@@ -198,7 +198,7 @@ logging.bad = function(msg, trace) {
 };
 
 logging.inspect = function(obj, trace) {
-  logging.debug(utils.inspect(obj, true, null), trace);
+  logging.debug(util.inspect(obj, true, null), trace);
 };
 
 logging.startTimer = function() {
