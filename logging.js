@@ -202,17 +202,17 @@ logging.inspect = function(obj, trace) {
 };
 
 logging.startTimer = function() {
-  var startTime = (new Date()).getTime();
+  var startTime = Date.now();
 
   return function(msg, trace) {
-    msg = msg + ' ' + ('(took ' + ((new Date()).getTime() - startTime) + 'ms)').yellow;
+    msg = msg + ' ' + ('(took ' + (Date.now() - startTime) + 'ms)').yellow;
     logging.dbg(msg, trace);
   };
 };
 
 logging.requestLogger = function(req, res, next) {
   var terminated = false;
-  var startTime = (new Date()).getTime();
+  var startTime = Date.now();
   var log = 'Request for '.green.bold + 
       (req.method + ' ' + req.url.toString()).yellow.bold + '\n\n';
   var memoryUsage = process.memoryUsage();
@@ -223,12 +223,12 @@ logging.requestLogger = function(req, res, next) {
   req.log = {};
 
   req.log.startTimer = function(name) {
-    var time = (new Date()).getTime();
+    var time = Date.now();
 
     req.log['end' + name] = function(msg) {
       var start = time - startTime;
-      var end = (new Date()).getTime() - startTime;
-      time = (new Date()).getTime() - time;
+      var end = Date.now() - startTime;
+      time = Date.now() - time;
       userMessages.push(('(' + start + 'ms -> ' + end + 'ms)').yellow.bold + 
                         ' ' + msg.toString().green + ' ' +
                         ('(took ' + time + 'ms)').yellow);
@@ -236,13 +236,13 @@ logging.requestLogger = function(req, res, next) {
   };
 
   req.log.push = function(msg) {
-    var start = (new Date()).getTime() - startTime;
+    var start = Date.now() - startTime;
     userMessages.push(('(' + start + 'ms)').yellow.bold + ' ' + 
                      msg.toString().green);
   };
 
   req.log.inspect = function(msg, obj) {
-    var start = (new Date()).getTime() - startTime;
+    var start = Date.now() - startTime;
     userMessages.push(('(' + start + 'ms)').yellow.bold + ' ' +
                       msg.toString().green + ':\n' + 
                       util.inspect(obj, true, null));
@@ -253,7 +253,7 @@ logging.requestLogger = function(req, res, next) {
       return;
     }
 
-    var endTime = (new Date()).getTime();
+    var endTime = Date.now();
 
     log += 'Request details:\n'.cyan.bold;
 
