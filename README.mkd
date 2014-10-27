@@ -52,6 +52,21 @@ the log message if set to ``true``. For example:
 
     logging.bad('Woops!', true);
 
+### Timers
+Use
+
+    var taskTimer = logging.startTimer();
+
+to start a timer. Then call it when the operation is finished:
+
+    taskTimer('Task');
+
+to display something like
+
+    [Mon 2014-10-27 11:26:54.624 GMT-3] DBG: Task (took 5079ms)
+
+Passing `true` as a second argument to `taskTimer` will make it to also print a stack trace.
+
 ## Using the Express middleware
 
 If you use Express, node-logging sports a middleware that will log details
